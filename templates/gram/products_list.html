@@ -1,0 +1,33 @@
+{% extends "pages/home.html" %} {% load static %} {% block title %} Posts {% endblock %} {% block datos %}
+
+<div style="text-align: right;">
+    <a href="{% url 'gram:ProductCreate' %}" class="btn btn-primary">Nuevo</a>
+</div>
+
+<div class="row">
+    {% for product in object_list %}
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">{{ product.name }}</h5>
+            </div>
+
+            <img src="/{{ product.photo.url }}" class="card-img-top" style="height: 280px;" alt="..." />
+
+            <p><strong>Descripcion: </strong> {{ product.description }}</p>
+            <p><strong> Contacto :</strong> {{ product.phone_number }}</p>
+            <p><strong> Precio :</strong> {{ product.price }} $</p>
+            <p><strong> Disponibles :</strong> {{ product.stock }}</p>
+
+            <a href="{% url 'gram:ProductUpdate' product.id %}" class="btn btn-outline-success">Editar</a>
+            <a href="{% url 'gram:ProductDelete' product.id %}" class="btn btn-outline-danger">Eliminar</a>
+        </div>
+    </div>
+
+    {% empty %}
+</div>
+
+<li>Sin Productos.</li>
+
+{% endfor %} {% endblock %}

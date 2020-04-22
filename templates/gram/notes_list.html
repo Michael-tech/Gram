@@ -1,0 +1,30 @@
+{% extends "pages/home.html" %} {% load static %} {% block title %} Notes {% endblock %} {% block datos %}
+
+<div style="text-align: right;">
+    <a href="{% url 'gram:NoteCreate' %}" class="btn btn-primary">Nuevo</a>
+</div>
+
+<div class="row">
+    {% for note in object_list %}
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Nota : {{ note.description }}</h5>
+            </div>
+
+            <div class="card-body">
+                <h6>Para el Dia : {{ note.day }}, hora: {{ note.hour }}</h6>
+
+                <a href="{% url 'gram:NoteUpdate' note.id %}" class="btn btn-outline-success">editar</a>
+                <a href="{% url 'gram:NoteDelete' note.id %}" class="btn btn-outline-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+</div>
+
+<li>Sin Notes.</li>
+
+{% endfor %} {% endblock %}

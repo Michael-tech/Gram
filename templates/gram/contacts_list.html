@@ -1,0 +1,29 @@
+{% extends "pages/home.html" %} {% load static %} {% block title %} Posts {% endblock %} {% block datos %}
+<div style="text-align: right;">
+    <a href="{% url 'gram:ContactCreate' %}" class="btn btn-primary">Nuevo</a>
+</div>
+<div class="row">
+    {% for contact in object_list %}
+
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Nombre: {{ contact.name }}</h5>
+            </div>
+
+            <div class="card-body">
+                <img src="/{{ contact.photo.url }}" class="card-img-top" style="width: 70px;" alt="..." />
+                <a href="{% url 'gram:ContactUpdate' contact.id %}" class="btn btn-outline-success">editar</a>
+                <a href="{% url 'gram:ContactDelete' contact.id %}" class="btn btn-outline-danger">Eliminar</a>
+
+                <h6>Numero: {{ contact.phone_number }}</h6>
+                <h6>email: {{ contact.email }}</h6>
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+</div>
+<li>Sin Contactos.</li>
+
+{% endfor %} {% endblock %}

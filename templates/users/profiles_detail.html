@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load static %} {% block title %}User: {{ user.username }}{% endblock %} {% block content %} {% if object.user == request.user %}
+<!-- Action buttons -->
+
+<div class="card text-center col-sm-12 ">
+
+    <div>
+
+    </div>
+    <div class="col-sm-12" style="margin-top: 10px;">
+        <img src="/{{ object.picture.url }}" alt="@{{ object.name }}" width="120px" />
+    </div>
+    {% if object.biography %}
+    <h5>@{{ object.name }}</h5>
+    <p class="lead">
+        {{ object.biography }}
+    </p>
+    <p>
+        <strong>Numero: </strong> {{ object.phone_number }}
+    </p>
+    {% if object.website %}
+    <p>
+        <strong>  Web Site: </strong> <a href="{{ object.website }}"> {{ object.website }}</a>
+    </p>
+
+    {% endif %}
+
+    <div class="col-sm-12" style="margin-bottom: 10px;">
+        <a class="btn btn-primary" href="{% url 'users:ProfileUpdate' %}" role="button">Update Profile</a>
+        <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+        <a class="btn btn-primary" href="{% url 'account_change_password' %}" role="button">Change Password</a>
+
+    </div>
+
+    {% else %}
+    <h5> please update your profile </h5>
+    <div class="col-sm-12" style="margin-bottom: 10px;">
+        <a class="btn btn-primary" href="{% url 'users:ProfileUpdate' %}" role="button">Update Profile</a>
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% endif %} {% endblock content %}

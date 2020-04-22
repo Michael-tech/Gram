@@ -1,0 +1,12 @@
+venv
+*.pyc
+staticfiles
+.env
+.VirtualMode
+db.sqlite3
+getting-started/*
+.envs
+
+.envs/*
+
+!.envs/.local/
